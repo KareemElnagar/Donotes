@@ -34,6 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:ellipsize="end"
+        android:fontFamily="@font/manrope_bold"
         android:hint="@string/note_title"
         android:maxLines="1"
         android:padding="10dp"
@@ -43,21 +44,96 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/button_back" />
 
-    <EditText
-        android:id="@+id/note_subtitle"
+    <LinearLayout
+        android:id="@+id/subtitle_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:ellipsize="end"
-        android:hint="@string/note_sub_title"
-        android:maxLines="1"
-        android:padding="10dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/ColorGray"
-        android:textSize="14sp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/note_title" />
+        app:layout_constraintTop_toBottomOf="@id/note_title">
+
+        <View
+            android:layout_width="6dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="5dp"
+            android:background="@color/ColorBlue" />
+
+        <EditText
+            android:id="@+id/note_subtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/manrope_regular"
+            android:hint="@string/note_sub_title"
+            android:maxLines="1"
+            android:padding="10dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/ColorGray"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/note_title" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/note_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:fontFamily="@font/manrope_regular"
+        android:hint="@string/enter_note_here"
+        android:inputType="textMultiLine"
+        android:padding="10dp"
+        android:textColor="@color/ColorWhite"
+        android:textColorHint="@color/ColorGray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/subtitle_layout" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/line1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:gravity="start"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:contentDescription="@string/image_icon"
+            android:src="@drawable/ic_image"
+            app:tint="@color/white" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:contentDescription="@string/link_icon"
+            android:src="@drawable/ic_link"
+            app:tint="@color/white" />
+
+        <TextView
+            android:id="@+id/TVdateTime"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_marginStart="10dp"
+            android:text="Last Edited"
+
+            android:textColor="@color/ColorWhite" />
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

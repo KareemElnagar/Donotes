@@ -7,30 +7,30 @@ import java.io.Serializable
 
 
 @Entity(tableName = "Notes")
-data class Notes(
+class Notes : Serializable {
     @PrimaryKey(autoGenerate = true)
-    var id: Int,
-    @ColumnInfo(name = "title")
-    val title: String,
+    var id: Int? = null
 
+    @ColumnInfo(name = "title")
+    var title: String? = null
     @ColumnInfo(name = "sub_title")
-    val subTitle: String,
+    var subTitle: String? = null
 
     @ColumnInfo(name = "date_time")
-    val dateTime: String,
+    var dateTime: String? = null
 
     @ColumnInfo(name = "note_text")
-    val noteText: String,
+    var noteText: String? = null
 
     @ColumnInfo(name = "img_path")
-    val imgPath: String,
+    var imgPath: String? = null
 
     @ColumnInfo(name = "web_link")
-    val link: String,
+    var link: String? = null
 
     @ColumnInfo(name = "color")
-    val color: String,
-) : Serializable {
+    var color: String? = null
+
     override fun toString(): String {
         return "$title : $dateTime"
     }

@@ -7,15 +7,17 @@ import com.kareem.donotes.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
+    private val homeFragment = HomeFragment()
+    private val createNoteFragment = CreateNoteFragment()
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityMainBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        replaceFragment(HomeFragment.newInstance(),true)
+        replaceFragment(homeFragment,true)
 
     }
 
-    fun replaceFragment(fragment:  Fragment, isTransition: Boolean) {
+    private fun replaceFragment(fragment:  Fragment, isTransition: Boolean) {
         val fragmentTransition = supportFragmentManager.beginTransaction()
         if (isTransition){
             fragmentTransition.setCustomAnimations(android.R.anim.slide_out_right,android.R.anim.slide_in_left)

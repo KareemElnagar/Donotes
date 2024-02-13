@@ -1,3 +1,5 @@
+package com.kareem.donotes
+
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -32,6 +34,15 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
     abstract fun setup()
     protected fun log(msg: Any) {
         Log.v(LOG_TAG, msg.toString())
+    }
+    fun replaceFragment(fragment:  Fragment, isTransition: Boolean) {
+        val fragmentTransition = requireActivity().supportFragmentManager.beginTransaction()
+        if (isTransition){
+            fragmentTransition.setCustomAnimations(android.R.anim.slide_out_right,android.R.anim.slide_in_left)
+        }
+        fragmentTransition.replace(R.id.frame_layout, fragment)
+            .addToBackStack(fragment.javaClass.simpleName).commit()
+
     }
 
 }
