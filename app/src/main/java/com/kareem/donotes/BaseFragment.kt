@@ -38,7 +38,7 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
     fun replaceFragment(fragment:  Fragment, isTransition: Boolean) {
         val fragmentTransition = requireActivity().supportFragmentManager.beginTransaction()
         if (isTransition){
-            fragmentTransition.setCustomAnimations(android.R.anim.slide_out_right,android.R.anim.slide_in_left)
+            fragmentTransition.setCustomAnimations(android.R.anim.fade_in,android.R.anim.fade_out)
         }
         fragmentTransition.replace(R.id.frame_layout, fragment)
             .addToBackStack(fragment.javaClass.simpleName).commit()
