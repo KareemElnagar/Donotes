@@ -24,7 +24,6 @@ class CreateNoteFragment : BaseFragment<FragmentCreateNoteBinding>() {
         val sdf = SimpleDateFormat("dd/M/yyyy hh:mm:ss")
         currentDate = sdf.format(Date())
         binding.apply {
-            TVdateTime.text = "date"
             buttonDone.setOnClickListener {
                  saveNote()
             }

@@ -9,8 +9,8 @@ import com.kareem.donotes.entities.Notes
 
 @Dao
 interface NotesDao {
-    @get:Query("SELECT * FROM Notes ORDER BY id DESC")
-    val getAllNotes: List<Notes>
+    @Query("SELECT * FROM Notes ORDER BY id DESC")
+   suspend fun getAllNotes(): List<Notes>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertNotes(notes: Notes)
