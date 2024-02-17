@@ -36,6 +36,7 @@
         android:ellipsize="end"
         android:fontFamily="@font/manrope_bold"
         android:hint="@string/note_title"
+        android:imeOptions="flagNavigateNext"
         android:maxLines="1"
         android:padding="10dp"
         android:textColor="@color/white"
@@ -68,6 +69,7 @@
             android:ellipsize="end"
             android:fontFamily="@font/manrope_regular"
             android:hint="@string/note_sub_title"
+            android:imeOptions="flagNavigateNext"
             android:maxLines="1"
             android:padding="10dp"
             android:textColor="@color/white"
@@ -125,15 +127,14 @@
             android:id="@+id/TVdateTime"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
             android:layout_marginStart="10dp"
-            android:text="Last Edited"
+            android:gravity="center"
+            android:text="@string/last_edited"
 
             android:textColor="@color/ColorWhite" />
 
 
     </androidx.appcompat.widget.LinearLayoutCompat>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,31 +1,31 @@
 package com.kareem.donotes
 
-import android.annotation.SuppressLint
-import android.os.Bundle
+import android.os.Build
 import android.view.LayoutInflater
-import android.view.View
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.lifecycleScope
 import com.kareem.donotes.database.NotesDatabase
 import com.kareem.donotes.databinding.FragmentCreateNoteBinding
 import com.kareem.donotes.entities.Notes
 import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
-import java.util.Date
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 
 class CreateNoteFragment : BaseFragment<FragmentCreateNoteBinding>() {
-    var currentDate: String? = null
+    private var currentDate: String? = null
     override val LOG_TAG: String = CreateNoteFragment::class.java.simpleName
     override val LayoutInflater: (LayoutInflater) -> FragmentCreateNoteBinding =
         FragmentCreateNoteBinding::inflate
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun setup() {
-        val sdf = SimpleDateFormat("dd/M/yyyy hh:mm:ss")
-        currentDate = sdf.format(Date())
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")
+        val currentDate = LocalDateTime.now().format(formatter)
         binding.apply {
             buttonDone.setOnClickListener {
-                 saveNote()
+                saveNote()
             }
             buttonBack.setOnClickListener {
                 replaceFragment(HomeFragment(), true)
@@ -55,7 +55,7 @@ class CreateNoteFragment : BaseFragment<FragmentCreateNoteBinding>() {
                     notes.noteText = noteText.text.toString()
                     notes.dateTime = currentDate
                     context?.let {
-                        NotesDatabase.getDatabase(it).noteDao().insertNotes(notes)
+                        NotesDatabase.getDaoInstance(it).insertNotes(notes)
                         noteTitle.setText("")
                         noteSubtitle.setText("")
                         noteText.setText("")

@@ -1,7 +1,11 @@
 package com.kareem.donotes
 
 import android.view.LayoutInflater
+import androidx.lifecycle.lifecycleScope
+import com.kareem.donotes.adapter.NotesAdapter
+import com.kareem.donotes.database.NotesDatabase
 import com.kareem.donotes.databinding.FragmentHomeBinding
+import kotlinx.coroutines.launch
 
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
@@ -14,6 +18,19 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             FAB.setOnClickListener {
                 replaceFragment(CreateNoteFragment(), true)
             }
+            lifecycleScope.launch {
+
+                context?.let {
+                    val notes = NotesDatabase.getDaoInstance(
+                        NotesApplication.getApplicationContext()
+                    ).getAllNotes()
+
+                    recyclerView.adapter = NotesAdapter(notes)
+                }
+
+
+            }
+
 
         }
 
