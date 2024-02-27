@@ -12,4 +12,6 @@
     <string name="enter_note_here">Enter Note here</string>
     <string name="last_edited">Last Edited</string>
     <string name="more">more</string>
+    <string name="color_palette">color palette</string>
+    <string name="date">date</string>
 </resources>

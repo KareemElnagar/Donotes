@@ -5,8 +5,8 @@
     android:layout_height="wrap_content"
     android:background="@color/colorPrimary"
     android:orientation="horizontal"
-    app:layout_behavior="@string/bottom_sheet_behavior"
-    app:layout_peekHeight="40dp">
+    app:layout_behavior="@string/bottom_sheet_behavior">
+
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/line1"
         android:layout_width="match_parent"
@@ -18,16 +18,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-
-            android:contentDescription="@string/tick_icon"
-            android:src="@drawable/ic_tick"
-            app:tint="@color/white" />
 
         <ImageView
+            android:id="@+id/bottom_sheet_add_photo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -36,17 +29,31 @@
             app:tint="@color/white" />
 
         <ImageView
+            android:id="@+id/color_palette"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:contentDescription="@string/link_icon"
-            android:src="@drawable/ic_link"
+            android:contentDescription="@string/color_palette"
+            android:src="@drawable/ic_palette"
             app:tint="@color/white" />
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <TextView
+                android:id="@+id/bottom_sheet_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:maxWidth="70dp"
+                android:text="@string/date"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
             <ImageView
+                android:id="@+id/bottom_sheet_more"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -55,8 +62,6 @@
                 android:src="@drawable/ic_more"
                 app:tint="@color/white" />
         </RelativeLayout>
-
-
 
 
     </androidx.appcompat.widget.LinearLayoutCompat>
