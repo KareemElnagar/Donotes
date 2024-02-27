@@ -28,32 +28,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/note_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:ellipsize="end"
-        android:fontFamily="@font/manrope_bold"
-        android:hint="@string/note_title"
-        android:imeOptions="flagNavigateNext"
-        android:maxLines="1"
-        android:padding="10dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/ColorGray"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/button_back" />
 
     <LinearLayout
-        android:id="@+id/subtitle_layout"
+        android:id="@+id/title_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/note_title">
+        app:layout_constraintTop_toBottomOf="@id/button_back">
 
         <View
             android:layout_width="6dp"
@@ -62,23 +46,32 @@
             android:background="@color/ColorBlue" />
 
         <EditText
-            android:id="@+id/note_subtitle"
+            android:id="@+id/note_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:ellipsize="end"
-            android:fontFamily="@font/manrope_regular"
-            android:hint="@string/note_sub_title"
+            android:fontFamily="@font/manrope_bold"
+            android:hint="@string/note_title"
             android:imeOptions="flagNavigateNext"
             android:maxLines="1"
             android:padding="10dp"
             android:textColor="@color/white"
             android:textColorHint="@color/ColorGray"
-            android:textSize="14sp"
+            android:textSize="22sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/note_title" />
+            app:layout_constraintTop_toBottomOf="@id/button_back" />
+
+
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/image_note"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/note_text"
+        app:layout_constraintTop_toBottomOf="@id/title_layout" />
 
     <EditText
         android:id="@+id/note_text"
@@ -93,7 +86,7 @@
         android:textColorHint="@color/ColorGray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/subtitle_layout" />
+        app:layout_constraintTop_toBottomOf="@id/title_layout" />
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/line1"

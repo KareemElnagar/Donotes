@@ -11,8 +11,6 @@ data class Notes(
 
     @ColumnInfo(name = "title")
     var title: String? = null,
-    @ColumnInfo(name = "sub_title")
-    var subTitle: String? = null,
 
     @ColumnInfo(name = "date_time")
     var dateTime: String? = null,

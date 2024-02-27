@@ -40,9 +40,7 @@ class CreateNoteFragment : BaseFragment<FragmentCreateNoteBinding>() {
 
             if (noteTitle.text.isNullOrEmpty()) {
                 Toast.makeText(context, "Note Title is Required", Toast.LENGTH_SHORT).show()
-            } else if (noteSubtitle.text.isNullOrEmpty()) {
 
-                Toast.makeText(context, "Note Sub Title is Required", Toast.LENGTH_SHORT).show()
             } else if (noteText.text.isNullOrEmpty()) {
 
                 Toast.makeText(context, "Note Description is Required", Toast.LENGTH_SHORT).show()
@@ -51,13 +49,11 @@ class CreateNoteFragment : BaseFragment<FragmentCreateNoteBinding>() {
                 lifecycleScope.launch {
                     val notes = Notes()
                     notes.title = noteTitle.text.toString()
-                    notes.subTitle = noteSubtitle.text.toString()
                     notes.noteText = noteText.text.toString()
                     notes.dateTime = currentDate
                     context?.let {
                         NotesDatabase.getDaoInstance(it).insertNotes(notes)
                         noteTitle.setText("")
-                        noteSubtitle.setText("")
                         noteText.setText("")
                         requireActivity().supportFragmentManager.popBackStack()
                     }

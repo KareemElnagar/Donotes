@@ -10,7 +10,7 @@ import com.kareem.donotes.entities.Notes
 
 @Database(
     entities = [Notes::class],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 abstract class NotesDatabase : RoomDatabase() {

@@ -28,7 +28,6 @@ class NotesAdapter(private val arrList: List<Notes>) :
 
     override fun onBindViewHolder(holder: NotesViewHolder, position: Int) {
         holder.binding.tvNoteItemTitle.text = arrList[position].title
-        holder.binding.tvNoteItemSubtitle.text = arrList[position].subTitle
         holder.binding.tvNoteItemDesc.text = arrList[position].noteText
     }
 
