@@ -1,5 +1,6 @@
 package com.kareem.donotes.adapter
 
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,6 +30,13 @@ class NotesAdapter(private val arrList: List<Notes>) :
     override fun onBindViewHolder(holder: NotesViewHolder, position: Int) {
         holder.binding.tvNoteItemTitle.text = arrList[position].title
         holder.binding.tvNoteItemDesc.text = arrList[position].noteText
+        if (arrList[position].imgPath != null) {
+            holder.binding.ImgNoteView.setImageBitmap(BitmapFactory.decodeFile(arrList[position].imgPath))
+            holder.binding.ImgNoteView.visibility = View.VISIBLE
+        } else {
+            holder.binding.ImgNoteView.visibility = View.GONE
+
+        }
     }
 
     override fun getItemCount(): Int = arrList.size

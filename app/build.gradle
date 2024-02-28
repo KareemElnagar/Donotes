@@ -53,5 +53,7 @@ dependencies {
 
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.0'
 
+    // easy permission
+    implementation 'pub.devrel:easypermissions:3.0.0'
 
 }

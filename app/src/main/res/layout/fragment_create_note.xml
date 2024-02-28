@@ -69,8 +69,13 @@
     <ImageView
         android:id="@+id/image_note"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="300dp"
+
+        android:layout_margin="10dp"
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@id/note_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/title_layout" />
 
     <EditText
@@ -86,7 +91,7 @@
         android:textColorHint="@color/ColorGray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/title_layout" />
+        app:layout_constraintTop_toBottomOf="@id/image_note" />
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/line1"
@@ -101,6 +106,7 @@
 
 
         <ImageView
+            android:id="@+id/Add_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
