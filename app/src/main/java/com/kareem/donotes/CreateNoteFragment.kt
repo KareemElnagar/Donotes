@@ -7,6 +7,7 @@ import android.content.Intent
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Build
+import android.os.Bundle
 import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
@@ -32,8 +33,39 @@ class CreateNoteFragment : BaseFragment<FragmentCreateNoteBinding>(),
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun setup() {
+
+        notesId = requireArguments().getInt("notesId", -1)
+
+        if (notesId != -1) {
+            lifecycleScope.launch {
+
+                context?.let {
+                    val notes = NotesDatabase.getDaoInstance(
+                        NotesApplication.getApplicationContext()
+                    ).getSpecifiedNote(notesId)
+
+                    binding.apply {
+                        noteTitle.setText(notes.title)
+//                        if (notes.imgPath != "") {
+//                            SELECTED_IMG_PATH = notes.imgPath!!
+//                            imageNote.setImageBitmap(BitmapFactory.decodeFile(notes.imgPath))
+//                            imageNote.visibility = View.VISIBLE
+//                        } else {
+//                            imageNote.visibility = View.GONE
+//
+//                        }
+                        noteText.setText(notes.noteText)
+                    }
+
+
+                }
+            }
+        }
+
+
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")
         val currentDate = LocalDateTime.now().format(formatter)
+
         binding.apply {
             buttonDone.setOnClickListener {
                 saveNote()
@@ -190,10 +222,20 @@ class CreateNoteFragment : BaseFragment<FragmentCreateNoteBinding>(),
     }
 
     companion object {
+        @JvmStatic
+        fun newInstance() =
+            CreateNoteFragment().apply {
+                arguments = Bundle().apply {
+
+                }
+            }
+
         var READ_STORAGE_PERM = 123
         var WRITE_STORAGE_PERM = 123
         var REQUEST_CODE_IMAGE = 111
         var SELECTED_IMG_PATH = ""
+        var isEdit = ""
+        var notesId = -1
 
     }
 

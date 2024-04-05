@@ -9,9 +9,10 @@ import com.kareem.donotes.R
 import com.kareem.donotes.databinding.ItemNoteBinding
 import com.kareem.donotes.entities.Notes
 
-class NotesAdapter(private val arrList: List<Notes>) :
+class NotesAdapter() :
     RecyclerView.Adapter<NotesAdapter.NotesViewHolder>() {
-
+    var listener: OnItemClickListener? = null
+    private var arrList = ArrayList<Notes>()
 
     class NotesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val binding = ItemNoteBinding.bind(itemView)
@@ -37,7 +38,25 @@ class NotesAdapter(private val arrList: List<Notes>) :
             holder.binding.ImgNoteView.visibility = View.GONE
 
         }
+
+        holder.binding.cardView.setOnClickListener {
+            listener!!.onClick(arrList[position].id!!)
+        }
     }
 
     override fun getItemCount(): Int = arrList.size
+
+    fun setData(arrNotesList: List<Notes>) {
+        arrList = arrNotesList as ArrayList<Notes>
+    }
+
+    interface OnItemClickListener {
+        fun onClick(notesId: Int )
+
+    }
+
+    fun setOnClickListener(listener1: OnItemClickListener) {
+        listener = listener1
+    }
 }
+

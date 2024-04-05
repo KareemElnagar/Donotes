@@ -11,6 +11,8 @@ import com.kareem.donotes.entities.Notes
 interface NotesDao {
     @Query("SELECT * FROM Notes ORDER BY id DESC")
     suspend fun getAllNotes(): List<Notes>
+   @Query("SELECT * FROM Notes WHERE id=:id")
+    suspend fun getSpecifiedNote(id:Int): Notes
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertNotes(notes: Notes)
