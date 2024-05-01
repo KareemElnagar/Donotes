@@ -34,6 +34,33 @@ class CreateNoteFragment : BaseFragment<FragmentCreateNoteBinding>(),
     @RequiresApi(Build.VERSION_CODES.O)
     override fun setup() {
 
+        getSpecifiedNote()
+
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")
+        val currentDate = LocalDateTime.now().format(formatter)
+
+        binding.apply {
+            buttonDone.setOnClickListener {
+                if (notesId != -1) {
+                    updateNote()
+
+                } else {
+                    saveNote()
+                }
+
+            }
+            buttonBack.setOnClickListener {
+                replaceFragment(HomeFragment(), true)
+            }
+            TVdateTime.text = currentDate
+            AddImage.setOnClickListener {
+                readStorageTask()
+            }
+        }
+
+    }
+
+    private fun getSpecifiedNote() {
         notesId = requireArguments().getInt("notesId", -1)
 
         if (notesId != -1) {
@@ -61,21 +88,24 @@ class CreateNoteFragment : BaseFragment<FragmentCreateNoteBinding>(),
                 }
             }
         }
+    }
 
-
-        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")
-        val currentDate = LocalDateTime.now().format(formatter)
-
+    private fun updateNote() {
         binding.apply {
-            buttonDone.setOnClickListener {
-                saveNote()
-            }
-            buttonBack.setOnClickListener {
-                replaceFragment(HomeFragment(), true)
-            }
-            TVdateTime.text = currentDate
-            AddImage.setOnClickListener {
-                readStorageTask()
+            lifecycleScope.launch {
+
+                context?.let {
+                    val notes = NotesDatabase.getDaoInstance(it).getSpecifiedNote(notesId)
+                    notes.title = noteTitle.text.toString()
+                    notes.noteText = noteText.text.toString()
+                    notes.dateTime = currentDate
+                    notes.imgPath = SELECTED_IMG_PATH
+                    NotesDatabase.getDaoInstance(it).updateNotes(notes)
+                    noteTitle.setText("")
+                    imageNote.visibility = View.GONE
+                    noteText.setText("")
+                    requireActivity().supportFragmentManager.popBackStack()
+                }
             }
         }
 
@@ -234,7 +264,6 @@ class CreateNoteFragment : BaseFragment<FragmentCreateNoteBinding>(),
         var WRITE_STORAGE_PERM = 123
         var REQUEST_CODE_IMAGE = 111
         var SELECTED_IMG_PATH = ""
-        var isEdit = ""
         var notesId = -1
 
     }

@@ -5,6 +5,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Update
 import com.kareem.donotes.entities.Notes
 
 @Dao
@@ -19,6 +20,9 @@ interface NotesDao {
 
     @Delete
     suspend fun deleteNotes(notes: Notes)
+
+    @Update
+    suspend fun updateNotes(notes: Notes)
 
     @Query("SELECT (SELECT COUNT(*) FROM Notes) == 0")
     fun isEmpty(): Boolean
