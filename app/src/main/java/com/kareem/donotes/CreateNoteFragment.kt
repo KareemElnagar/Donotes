@@ -56,6 +56,9 @@ class CreateNoteFragment : BaseFragment<FragmentCreateNoteBinding>(),
             AddImage.setOnClickListener {
                 readStorageTask()
             }
+            deleteButton.setOnClickListener {
+                deleteNote()
+            }
         }
 
     }
@@ -89,7 +92,19 @@ class CreateNoteFragment : BaseFragment<FragmentCreateNoteBinding>(),
             }
         }
     }
+    private fun deleteNote() {
+        binding.apply {
+            lifecycleScope.launch {
 
+                context?.let {
+                   NotesDatabase.getDaoInstance(it).deleteSpecifiedNote(notesId)
+
+                    requireActivity().supportFragmentManager.popBackStack()
+                }
+            }
+        }
+
+    }
     private fun updateNote() {
         binding.apply {
             lifecycleScope.launch {

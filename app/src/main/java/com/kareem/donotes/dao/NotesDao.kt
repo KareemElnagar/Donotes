@@ -20,9 +20,13 @@ interface NotesDao {
 
     @Delete
     suspend fun deleteNotes(notes: Notes)
+    @Query("DELETE FROM Notes WHERE id=:id")
+    suspend fun deleteSpecifiedNote(id:Int)
 
     @Update
     suspend fun updateNotes(notes: Notes)
+
+
 
     @Query("SELECT (SELECT COUNT(*) FROM Notes) == 0")
     fun isEmpty(): Boolean
