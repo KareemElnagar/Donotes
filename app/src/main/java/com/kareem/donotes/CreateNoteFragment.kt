@@ -58,6 +58,7 @@ class CreateNoteFragment : BaseFragment<FragmentCreateNoteBinding>(),
             }
             deleteButton.setOnClickListener {
                 deleteNote()
+                Toast.makeText(context,"Note Deleted",Toast.LENGTH_SHORT).show()
             }
         }
 
